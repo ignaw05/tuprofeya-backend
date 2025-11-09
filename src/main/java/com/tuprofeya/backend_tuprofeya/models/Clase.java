@@ -1,14 +1,13 @@
 package com.tuprofeya.backend_tuprofeya.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import org.springframework.context.annotation.Primary;
+import lombok.*;
 
 import java.util.List;
 
 @RequiredArgsConstructor
+@Builder
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -34,7 +33,8 @@ public class Clase {
     @Enumerated(EnumType.STRING)
     private Nivel nivel;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "profesor_id")
     private Profesor profesor;
 
     @ElementCollection(targetClass = Materia.class)

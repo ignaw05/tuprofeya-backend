@@ -17,4 +17,8 @@ public class ProfesorDisponibilidad {
 
     @Enumerated(EnumType.STRING)
     private Dia dia;
+
+    @ManyToOne
+    @JoinColumn(name = "profesor_id")
+    private Profesor profesor;
 }
