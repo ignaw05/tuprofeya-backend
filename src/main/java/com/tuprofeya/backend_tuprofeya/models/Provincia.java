@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
-@Getter
 public enum Provincia {
     BUENOS_AIRES("Buenos Aires"),
     CATAMARCA("Catamarca"),
@@ -32,4 +31,8 @@ public enum Provincia {
     CABA("CABA");
 
     private final String descripcion;
+
+    public String getDescripcion() {
+        return descripcion;
+    }
 }

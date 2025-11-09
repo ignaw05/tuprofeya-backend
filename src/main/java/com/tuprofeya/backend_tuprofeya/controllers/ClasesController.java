@@ -2,6 +2,7 @@ package com.tuprofeya.backend_tuprofeya.controllers;
 
 import com.tuprofeya.backend_tuprofeya.dto.ClaseResponseDTO;
 import com.tuprofeya.backend_tuprofeya.services.ClasesService;
+import feign.Param;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,13 @@ public class ClasesController {
     public ResponseEntity<List<ClaseResponseDTO>> getAllClases(){
         List<ClaseResponseDTO> clases = service.getAllClases();
         return ResponseEntity.ok(clases);
+    }
+
+    @Operation(summary = "Obtener una clase especifica")
+    @ApiResponse(responseCode = "200", description = "Obtiene una clase por ID")
+    @GetMapping("/{id}")
+    public ResponseEntity<ClaseResponseDTO> getClaseById(Long id){
+        ClaseResponseDTO clase = service.getClaseById(id);
+        return ResponseEntity.ok(clase);
     }
 }

@@ -11,4 +11,8 @@ public enum Modalidad {
     PRESENCIAL("Presencial");
 
     private final String descripcion;
+
+    public String getDescripcion() {
+        return descripcion;
+    }
 }

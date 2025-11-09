@@ -37,4 +37,8 @@ public enum Materia {
     ESPAÑOL("Español");
 
     private String nombre;
+
+    public String getNombre() {
+        return nombre;
+    }
 }

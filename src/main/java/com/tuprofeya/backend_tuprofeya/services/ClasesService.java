@@ -21,9 +21,13 @@ public class ClasesService {
         List<Clase> clases = repository.getAllClases();
         List<ClaseResponseDTO> clasesDTO = new ArrayList<>();
         clases.stream().forEach(clase -> {
-            Profesor prof = clase.getProfesor();
-            clasesDTO.add(ClaseResponseDTO.fromEntity(clase,prof));
+            clasesDTO.add(ClaseResponseDTO.fromEntity(clase,clase.getProfesor()));
         });
         return clasesDTO;
+    }
+
+    public ClaseResponseDTO getClaseById(Long id){
+        Clase clase = repository.getAllClases().getFirst();
+        return ClaseResponseDTO.fromEntity(clase,clase.getProfesor());
     }
 }

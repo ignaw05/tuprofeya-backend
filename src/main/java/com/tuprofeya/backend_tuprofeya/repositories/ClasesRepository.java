@@ -1,9 +1,6 @@
 package com.tuprofeya.backend_tuprofeya.repositories;
 
-import com.tuprofeya.backend_tuprofeya.models.Clase;
-import com.tuprofeya.backend_tuprofeya.models.Duracion;
-import com.tuprofeya.backend_tuprofeya.models.Modalidad;
-import com.tuprofeya.backend_tuprofeya.models.Profesor;
+import com.tuprofeya.backend_tuprofeya.models.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -16,6 +13,7 @@ public class ClasesRepository {
         Clase clase1 = Clase.builder().
                 nombre("PRE UTN")
                 .descripcion("Clases particulares")
+                .provincia(Provincia.MENDOZA)
                 .duracion(Duracion.NOVENTA)
                 .modalidad(Modalidad.PRESENCIAL)
                 .profesor(Profesor.builder()

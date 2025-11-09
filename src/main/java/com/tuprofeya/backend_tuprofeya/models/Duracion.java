@@ -19,4 +19,12 @@ public enum Duracion {
 
     private Integer minutos;
     private String descripcion;
+
+    public Integer getMinutos() {
+        return minutos;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
 }

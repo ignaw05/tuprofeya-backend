@@ -11,10 +11,10 @@ public record ClaseResponseDTO (
         String nombre,
         String descripcion,
         ProfesorResponseDTO profesor,
-        Provincia provincia,
+        String provincia,
         Float precio,
-        Duracion duracion,
-        Modalidad modalidad,
+        String duracion,
+        String modalidad,
         Nivel nivel,
         List<Materia> materias
 ) {
@@ -24,10 +24,10 @@ public record ClaseResponseDTO (
                 clase.getNombre(),
                 clase.getDescripcion(),
                 ProfesorResponseDTO.fromEntity(profe),
-                clase.getProvincia(),
+                clase.getProvincia().getDescripcion(),
                 clase.getPrecio(),
-                clase.getDuracion(),
-                clase.getModalidad(),
+                clase.getDuracion().getDescripcion(),
+                clase.getModalidad().getDescripcion(),
                 clase.getNivel(),
                 clase.getMaterias()
         );
