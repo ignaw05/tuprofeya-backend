@@ -38,4 +38,9 @@ public class ClasesController {
         return ResponseEntity.ok(clase);
     }
 
+    public ResponseEntity<List<ClaseResponseDTO>> getClaseByProfesorId(Long id){
+        List<ClaseResponseDTO> clases = service.getClasesByProfesorId(id);
+        return ResponseEntity.ok(clases);
+    }
+
 }

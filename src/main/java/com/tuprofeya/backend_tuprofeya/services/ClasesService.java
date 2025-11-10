@@ -18,7 +18,7 @@ public class ClasesService {
     }
 
     public List<ClaseResponseDTO> getAllClases(){
-        List<Clase> clases = repository.getAllClases();
+        List<Clase> clases = repository.findAll();
         List<ClaseResponseDTO> clasesDTO = new ArrayList<>();
         clases.stream().forEach(clase -> {
             clasesDTO.add(ClaseResponseDTO.fromEntity(clase,clase.getProfesor()));
@@ -27,7 +27,17 @@ public class ClasesService {
     }
 
     public ClaseResponseDTO getClaseById(Long id){
-        Clase clase = repository.getAllClases().getFirst();
+        Clase clase = repository.findById(id).orElseThrow();
         return ClaseResponseDTO.fromEntity(clase,clase.getProfesor());
     }
+
+    public List<ClaseResponseDTO> getClasesByProfesorId(Long id){
+        List<Clase> clases = repository.findAll();
+        List<ClaseResponseDTO> clasesDTO = new ArrayList<>();
+        clases.stream().forEach(clase -> {
+            clasesDTO.add(ClaseResponseDTO.fromEntity(clase,clase.getProfesor()));
+        });
+        return clasesDTO;
+    }
 }
+
