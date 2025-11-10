@@ -37,4 +37,5 @@ public class ClasesController {
         ClaseResponseDTO clase = service.getClaseById(id);
         return ResponseEntity.ok(clase);
     }
+
 }
