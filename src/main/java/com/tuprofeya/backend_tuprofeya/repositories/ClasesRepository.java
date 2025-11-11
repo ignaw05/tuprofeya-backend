@@ -10,4 +10,6 @@ import java.util.List;
 
 public interface ClasesRepository extends JpaRepository<Clase,Long> {
 
+    public List<Clase> findClaseByProfesor(Profesor profesor);
+
 }

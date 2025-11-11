@@ -27,4 +27,14 @@ public enum Duracion {
     public String getDescripcion() {
         return descripcion;
     }
+
+    public static Duracion fromDescripcion(String descripcion) {
+        for (Duracion d : Duracion.values()) {
+            if (d.getDescripcion().equalsIgnoreCase(descripcion)) {
+                return d;
+            }
+        }
+        throw new IllegalArgumentException("Duración inválida: " + descripcion);
+    }
+
 }

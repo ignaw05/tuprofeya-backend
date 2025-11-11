@@ -17,6 +17,7 @@ import java.util.List;
 @RequestMapping("/clases")
 public class ClasesController {
     private final ClasesService service;
+
     @Autowired
     public ClasesController(ClasesService service){
         this.service = service;
@@ -31,16 +32,12 @@ public class ClasesController {
     }
 
     @Operation(summary = "Obtener una clase especifica")
-    @ApiResponse(responseCode = "200", description = "Obtiene una clase por ID")
+    @ApiResponse(responseCode = "200", description = "Clase obtenida correctamente")
     @GetMapping("/{id}")
     public ResponseEntity<ClaseResponseDTO> getClaseById(Long id){
         ClaseResponseDTO clase = service.getClaseById(id);
         return ResponseEntity.ok(clase);
     }
 
-    public ResponseEntity<List<ClaseResponseDTO>> getClaseByProfesorId(Long id){
-        List<ClaseResponseDTO> clases = service.getClasesByProfesorId(id);
-        return ResponseEntity.ok(clases);
-    }
 
 }

@@ -15,7 +15,7 @@ public record ClaseResponseDTO (
         Float precio,
         String duracion,
         String modalidad,
-        Nivel nivel,
+        String nivel,
         List<Materia> materias
 ) {
     public static ClaseResponseDTO fromEntity(Clase clase, Profesor profe){
@@ -28,7 +28,7 @@ public record ClaseResponseDTO (
                 clase.getPrecio(),
                 clase.getDuracion().getDescripcion(),
                 clase.getModalidad().getDescripcion(),
-                clase.getNivel(),
+                clase.getNivel().getDescripcion(),
                 clase.getMaterias()
         );
     }

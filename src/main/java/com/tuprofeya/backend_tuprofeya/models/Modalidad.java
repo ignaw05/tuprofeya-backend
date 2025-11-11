@@ -15,4 +15,13 @@ public enum Modalidad {
     public String getDescripcion() {
         return descripcion;
     }
+
+    public static Modalidad fromDescripcion(String descripcion) {
+        for (Modalidad d : Modalidad.values()) {
+            if (d.getDescripcion().equalsIgnoreCase(descripcion)) {
+                return d;
+            }
+        }
+        throw new IllegalArgumentException("Modalidad inválida: " + descripcion);
+    }
 }

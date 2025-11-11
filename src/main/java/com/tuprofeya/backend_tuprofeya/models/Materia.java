@@ -41,4 +41,14 @@ public enum Materia {
     public String getNombre() {
         return nombre;
     }
+
+    public static Materia fromNombre(String nombre) {
+        for (Materia d : Materia.values()) {
+            if (d.getNombre().equalsIgnoreCase(nombre)) {
+                return d;
+            }
+        }
+        throw new IllegalArgumentException("Materia inválida: " + nombre);
+    }
+
 }

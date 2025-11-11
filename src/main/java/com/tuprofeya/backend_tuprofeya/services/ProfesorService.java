@@ -5,23 +5,27 @@ import com.tuprofeya.backend_tuprofeya.models.Clase;
 import com.tuprofeya.backend_tuprofeya.models.Profesor;
 import com.tuprofeya.backend_tuprofeya.repositories.ClasesRepository;
 import com.tuprofeya.backend_tuprofeya.repositories.ProfesorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ClasesService {
-    private final ClasesRepository repository;
-    private final ProfesorRepository profesorRepository;
+public class ProfesorService {
 
-    public ClasesService(ClasesRepository repository, ProfesorRepository profesorRepository){
+    private final ProfesorRepository repository;
+    private final ClasesRepository clasesRepository;
+
+    @Autowired
+    public ProfesorService(ProfesorRepository repository, ClasesRepository clasesRepository) {
         this.repository = repository;
-        this.profesorRepository = profesorRepository;
+        this.clasesRepository = clasesRepository;
     }
 
-    public List<ClaseResponseDTO> getAllClases(){
-        List<Clase> clases = repository.findAll();
+    public List<ClaseResponseDTO> getClasesByProfesorId(Long id){
+        Profesor profesor = repository.findById(id).orElseThrow();
+        List<Clase> clases = clasesRepository.findClaseByProfesor(profesor);
         List<ClaseResponseDTO> clasesDTO = new ArrayList<>();
         clases.stream().forEach(clase -> {
             clasesDTO.add(ClaseResponseDTO.fromEntity(clase,clase.getProfesor()));
@@ -29,10 +33,7 @@ public class ClasesService {
         return clasesDTO;
     }
 
-    public ClaseResponseDTO getClaseById(Long id){
-        Clase clase = repository.findById(id).orElseThrow();
-        return ClaseResponseDTO.fromEntity(clase,clase.getProfesor());
+    public ClaseResponseDTO addClase(ClaseRequestDTO claseRequestDTO){
+
     }
-
 }
-
