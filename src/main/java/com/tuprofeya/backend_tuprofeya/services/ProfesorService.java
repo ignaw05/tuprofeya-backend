@@ -1,5 +1,6 @@
 package com.tuprofeya.backend_tuprofeya.services;
 
+import com.tuprofeya.backend_tuprofeya.dto.ClaseRequestDTO;
 import com.tuprofeya.backend_tuprofeya.dto.ClaseResponseDTO;
 import com.tuprofeya.backend_tuprofeya.models.Clase;
 import com.tuprofeya.backend_tuprofeya.models.Profesor;
@@ -34,6 +35,9 @@ public class ProfesorService {
     }
 
     public ClaseResponseDTO addClase(ClaseRequestDTO claseRequestDTO){
-
+        Profesor profesor = repository.findById(claseRequestDTO.getProfesor_id()).orElseThrow();
+        Clase clase = claseRequestDTO.toEntity(profesor);
+        clasesRepository.save(clase);
+        return ClaseResponseDTO.fromEntity(clase,profesor);
     }
 }

@@ -1,6 +1,7 @@
 package com.tuprofeya.backend_tuprofeya.controllers;
 
 
+import com.tuprofeya.backend_tuprofeya.dto.ClaseRequestDTO;
 import com.tuprofeya.backend_tuprofeya.dto.ClaseResponseDTO;
 import com.tuprofeya.backend_tuprofeya.models.Clase;
 import com.tuprofeya.backend_tuprofeya.models.Profesor;
@@ -30,7 +31,7 @@ public class ProfesorController {
     @Operation(summary = "Obtener todas las clases de un profesor")
     @ApiResponse(responseCode = "200", description = "Clases obtenidad correctamente")
     @GetMapping("/clases/{id}")
-    public ResponseEntity<List<ClaseResponseDTO>> getClaseByProfesorId(Long id){
+    public ResponseEntity<List<ClaseResponseDTO>> getClaseByProfesorId(@PathVariable Long id){
         List<ClaseResponseDTO> clases = service.getClasesByProfesorId(id);
         return ResponseEntity.ok(clases);
     }
@@ -42,6 +43,7 @@ public class ProfesorController {
     })
     @PostMapping("/{id}/nuevaclase")
     public ResponseEntity<ClaseResponseDTO> addClase(
+            @PathVariable Long id,
             @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Datos de clase", required = true)
             @Valid
             @RequestBody ClaseRequestDTO claseRequestDTO){
@@ -49,11 +51,5 @@ public class ProfesorController {
         return ResponseEntity.status(HttpStatus.CREATED).body(clase);
     }
 
-
-    public ResponseEntity<ProductoResponseDTO> agregarProducto(@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Informacion nuevo producto",
-            required = true) @Valid @RequestBody ProductoDTO productoDTO){
-        ProductoResponseDTO producto = service.crearProducto(productoDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(producto);
-    }
 }
 
