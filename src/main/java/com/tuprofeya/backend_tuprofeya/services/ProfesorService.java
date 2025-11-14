@@ -40,4 +40,11 @@ public class ProfesorService {
         clasesRepository.save(clase);
         return ClaseResponseDTO.fromEntity(clase,profesor);
     }
+
+    public ClaseResponseDTO updateClase(Long idprofesor, Long idclase, ClaseRequestDTO claseRequestDTO){
+        Profesor profesor = repository.findById(idprofesor).orElseThrow();
+        Clase clase = clasesRepository.findById(idclase).orElseThrow();
+        Clase claseUpdated = claseRequestDTO.updateEntity(clase);
+        return ClaseResponseDTO.fromEntity(claseUpdated,profesor);
+    }
 }

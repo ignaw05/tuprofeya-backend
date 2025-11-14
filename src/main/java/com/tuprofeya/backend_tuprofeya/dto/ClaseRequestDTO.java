@@ -62,4 +62,16 @@ public class ClaseRequestDTO {
         clase.setProfesor(profesor);
         return clase;
     }
+
+    public Clase updateEntity (Clase clase){
+        clase.setNombre(this.nombre);
+        clase.setDescripcion(this.descripcion);
+        clase.setPrecio(this.precio);
+        clase.setDuracion(Duracion.fromDescripcion(this.duracion));
+        clase.setModalidad(Modalidad.fromDescripcion(this.modalidad));
+        clase.setNivel(Nivel.fromDescripcion(this.nivel));
+        clase.setMaterias(this.materiasToList());
+        clase.setProvincia(Provincia.fromDescripcion(this.provincia));
+        return clase;
+    }
 }

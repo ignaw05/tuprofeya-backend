@@ -3,8 +3,6 @@ package com.tuprofeya.backend_tuprofeya.controllers;
 
 import com.tuprofeya.backend_tuprofeya.dto.ClaseRequestDTO;
 import com.tuprofeya.backend_tuprofeya.dto.ClaseResponseDTO;
-import com.tuprofeya.backend_tuprofeya.models.Clase;
-import com.tuprofeya.backend_tuprofeya.models.Profesor;
 import com.tuprofeya.backend_tuprofeya.services.ProfesorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -50,6 +48,18 @@ public class ProfesorController {
         ClaseResponseDTO clase = service.addClase(claseRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(clase);
     }
+
+    @PutMapping("/{idprofe}/clases/{claseid}")
+    public ResponseEntity<ClaseResponseDTO> updateClase(
+            @PathVariable Long idprofe,
+            @PathVariable Long claseid,
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Datos a actualizar de la clase", required = true)
+            @Valid
+            @RequestBody ClaseRequestDTO claseRequestDTO) {
+        ClaseResponseDTO clase = service.updateClase(idprofe,claseid,claseRequestDTO);
+        return ResponseEntity.ok(clase);
+    }
+
 
 }
 
